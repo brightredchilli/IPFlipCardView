@@ -46,8 +46,10 @@
         self.count = 0;
     }
     self.titleLabel.text = [self.allStrings objectAtIndex:self.count];
-    
-    [self.contentView flipViewWithDuration:7 curve:UIViewAnimationCurveLinear];
+    [self.contentView flipViewWithDuration:2.3
+                                     curve:UIViewAnimationCurveLinear
+                                horizontal:YES
+                             directionAway:YES];
     
 }
 @end
