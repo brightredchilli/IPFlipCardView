@@ -20,13 +20,14 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 
 - (void)flipViewWithDuration:(CFTimeInterval)duration
                        curve:(UIViewAnimationCurve)curve {
-    [self flipViewWithDuration:duration curve:curve horizontal:NO directionAway:YES];
+    [self flipViewWithDuration:duration curve:curve horizontal:YES directionAway:NO fadeOut:NO];
 }
 
 - (void)flipViewWithDuration:(CFTimeInterval)duration
                        curve:(UIViewAnimationCurve)curve
                   horizontal:(BOOL)isHorizontalFlip
-             directionAway:(BOOL)isDirectionAway {
+               directionAway:(BOOL)isDirectionAway
+                     fadeOut:(BOOL)isFade {
     
     NSString *timingFunction = kCAMediaTimingFunctionLinear;
     
@@ -62,6 +63,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
         newAnchor = CGPointMake(0.5, 0);
         newPosition.y = CGRectGetMinY(self.frame);
     }
+    t.m34 = -1.0/500.0;
     if (isDirectionAway) {
         t1 = self.layer.transform;
         t2 = t;
@@ -98,11 +100,18 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
     //make the rotation happen
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacity.fromValue = [NSNumber numberWithDouble:0];
-    opacity.toValue = [NSNumber numberWithDouble:1];
+    
+    if (isFade) {
+        opacity.fromValue = [NSNumber numberWithDouble:1];
+        opacity.toValue = [NSNumber numberWithDouble:0];
+    } else {
+        opacity.fromValue = [NSNumber numberWithDouble:0];
+        opacity.toValue = [NSNumber numberWithDouble:1];
+    }
     opacity.duration = duration;
 //    opacity.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
-    opacity.fillMode = kCAFillModeBackwards;
+    opacity.removedOnCompletion = NO;
+    opacity.fillMode = kCAFillModeBoth;
     
     [self.layer addAnimation:anchorPoint forKey:@"anchorPoint"];
     [self.layer addAnimation:position forKey:@"position"];
@@ -111,4 +120,9 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     
 }
 
+- (void)transitionToView:(UIView *)view
+                duration:(CFTimeInterval)duration
+                   curve:(UIViewAnimationCurve)curve
+              horizontal:(BOOL)isHorizontalFlip {
+}
 @end

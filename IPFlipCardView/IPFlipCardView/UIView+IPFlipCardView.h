@@ -17,6 +17,12 @@
 - (void)flipViewWithDuration:(CFTimeInterval)duration
                        curve:(UIViewAnimationCurve)curve
                   horizontal:(BOOL)isHorizontalFlip
-               directionAway:(BOOL)isDirectionAway;
+               directionAway:(BOOL)isDirectionAway
+                     fadeOut:(BOOL)isFade;
+
+- (void)transitionToView:(UIView *)view
+                duration:(CFTimeInterval)duration
+                   curve:(UIViewAnimationCurve)curve
+              horizontal:(BOOL)isHorizontalFlip;
 
 @end

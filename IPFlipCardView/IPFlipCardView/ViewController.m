@@ -40,16 +40,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)flipViewClicked:(id)sender {
+- (void)updateCurrentCount {
     self.count++;
     if (self.count >= self.allStrings.count) {
         self.count = 0;
     }
+}
+
+- (IBAction)flipViewClicked:(id)sender {
+    [self updateCurrentCount];
     self.titleLabel.text = [self.allStrings objectAtIndex:self.count];
-    [self.contentView flipViewWithDuration:2.3
+    [self.contentView flipViewWithDuration:0.3
                                      curve:UIViewAnimationCurveLinear
                                 horizontal:YES
-                             directionAway:YES];
+                             directionAway:YES
+                                   fadeOut:YES];
+    
+}
+
+- (IBAction)swapViewClicked:(id)sender {
     
 }
 @end
