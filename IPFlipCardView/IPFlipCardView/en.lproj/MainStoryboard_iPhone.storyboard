@@ -15,21 +15,12 @@
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="940" id="0bU-2k-M0p" customClass="IPFlipViewContainer">
                                 <rect key="frame" x="29" y="42" width="263" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Hello world" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5CK-5N-I5C">
-                                        <rect key="frame" x="17" y="13" width="177" height="51"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="43"/>
-                                        <color key="textColor" red="0.93309684187279152" green="0.93309684187279152" blue="0.93309684187279152" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1Se-vZ-55M">
-                                <rect key="frame" x="194" y="211" width="59" height="44"/>
+                                <rect key="frame" x="190" y="289" width="57" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="NExt">
+                                <state key="normal" title="Next">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -41,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="h3B-uW-CZV">
-                                <rect key="frame" x="78" y="211" width="60" height="44"/>
+                                <rect key="frame" x="73" y="289" width="60" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Back">
@@ -60,7 +51,6 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="0bU-2k-M0p" id="5Oz-bV-TCz"/>
-                        <outlet property="titleLabel" destination="5CK-5N-I5C" id="SRS-SG-Evj"/>
                         <outlet property="view" destination="3" id="bAS-aR-Ojn"/>
                     </connections>
                 </viewController>
@@ -75,9 +65,9 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="down:"/>
                 <relationship kind="action" name="flipBackClicked:"/>
                 <relationship kind="action" name="flipViewClicked:"/>
+                <relationship kind="action" name="swapViewClicked:"/>
                 <relationship kind="outlet" name="contentView" candidateClass="IPFlipViewContainer"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
             </relationships>

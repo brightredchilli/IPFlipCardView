@@ -26,12 +26,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     [self.view setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.contentView.direction = IPFlipViewDirectionVertical;
     
     self.allStrings = @[@"Food", @"Music", @"Art", @"Travel", @"Lifestyle", @"Fashion", @"Beat", @"Opinion"];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-//    self.contentView.backgroundColor = [UIColor darkGrayColor];
+    
+    [self flipViewClicked:nil];
 }
 
 - (void)didReceiveMemoryWarning

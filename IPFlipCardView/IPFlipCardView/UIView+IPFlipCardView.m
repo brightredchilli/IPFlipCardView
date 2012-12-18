@@ -56,30 +56,37 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     CATransform3D t, t1 = self.layer.transform, t2 = self.layer.transform;
     CGPoint newAnchor;
     CGPoint newPosition = self.layer.position;
+    NSInteger rotateX, rotateY, rotateZ;
 //    CGFloat degrees = isFrontal ? -90 : 90;
     
     if (isHorizontalFlip) {
         newAnchor = CGPointMake(0.0, 0.5);
         newPosition.x = CGRectGetMinX(self.frame);
+        rotateX = rotateZ = 0;
+        rotateY = 1;
     } else {
         newAnchor = CGPointMake(0.5, 0);
         newPosition.y = CGRectGetMinY(self.frame);
+        rotateY = rotateZ = 0;
+        rotateX = 1;
     }
     
     t1.m34 = -1.0/300.0;
     t2.m34 = -1.0/300.0;
     
+    
+    
     if (isDirectionAway) {
         if (isFrontal) {
-            t1 = CATransform3DRotate(t1, DegreesToRadians(-90) , 0, 1, 0);
+            t1 = CATransform3DRotate(t1, DegreesToRadians(-90) , rotateX, rotateY, rotateZ);
         } else {
-            t2 = CATransform3DRotate(t2, DegreesToRadians(90) , 0, 1, 0);
+            t2 = CATransform3DRotate(t1, DegreesToRadians(90) , rotateX, rotateY, rotateZ);
         }
     } else {
         if (isFrontal) {
-            t2 = CATransform3DRotate(t2, DegreesToRadians(-90) , 0, 1, 0);
+            t2 = CATransform3DRotate(t1, DegreesToRadians(-90) , rotateX, rotateY, rotateZ);
         } else {
-            t1 = CATransform3DRotate(t1, DegreesToRadians(90) , 0, 1, 0);
+            t1 = CATransform3DRotate(t1, DegreesToRadians(90) , rotateX, rotateY, rotateZ);
         }
     }
     

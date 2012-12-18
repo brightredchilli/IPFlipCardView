@@ -42,7 +42,7 @@ static const CGFloat delayConstant = 0.7;
 
 - (void)setup {
     _direction = IPFlipViewDirectionHorizontal;
-    _animationDuration = 0.5;
+    _animationDuration = 0.3;
 }
 
 - (void)addView:(UIView *)view {
