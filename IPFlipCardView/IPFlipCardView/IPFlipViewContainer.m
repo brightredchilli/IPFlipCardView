@@ -121,6 +121,7 @@
             if ([view.layer animationForKey:animKey] == anim) {
                 [self.currentViews makeObjectsPerformSelector:@selector(removeFromSuperview)];
                 self.currentViews = nil;
+                NSLog(@"current views is now nil");
                 break;
             }
         }

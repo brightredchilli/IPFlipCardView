@@ -94,7 +94,6 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     anchorPoint.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     anchorPoint.fillMode = kCAFillModeBoth;
     anchorPoint.removedOnCompletion = NO;
-    anchorPoint.delegate = delegate;
     
     //shift position so that the anchor point does not cause shift.
     CABasicAnimation *position = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -104,7 +103,6 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     position.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     position.fillMode = kCAFillModeBoth;
     position.removedOnCompletion = NO;
-    position.delegate = delegate;
     
     //make the rotation happen
     CABasicAnimation *rotationTransform = [CABasicAnimation animationWithKeyPath:@"transform"];
