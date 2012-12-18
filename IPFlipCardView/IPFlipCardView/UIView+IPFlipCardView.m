@@ -53,7 +53,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
             break;
     }
     
-    CATransform3D t, t1, t2;
+    CATransform3D t, t1 = self.layer.transform, t2 = self.layer.transform;
     CGPoint newAnchor;
     CGPoint newPosition = self.layer.position;
 //    CGFloat degrees = isFrontal ? -90 : 90;
@@ -66,25 +66,22 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
         newPosition.y = CGRectGetMinY(self.frame);
     }
     
+    t1.m34 = -1.0/300.0;
+    t2.m34 = -1.0/300.0;
+    
     if (isDirectionAway) {
         if (isFrontal) {
-            t1 = CATransform3DRotate(self.layer.transform, DegreesToRadians(90) , 0, 1, 0);
-            t2 = self.layer.transform;
+            t1 = CATransform3DRotate(t1, DegreesToRadians(-90) , 0, 1, 0);
         } else {
-            t1 = self.layer.transform;
-            t2 = CATransform3DRotate(self.layer.transform, DegreesToRadians(-90) , 0, 1, 0);
+            t2 = CATransform3DRotate(t2, DegreesToRadians(90) , 0, 1, 0);
         }
     } else {
         if (isFrontal) {
-            t1 = self.layer.transform;
-            t2 = CATransform3DRotate(self.layer.transform, DegreesToRadians(90) , 0, 1, 0);
+            t2 = CATransform3DRotate(t2, DegreesToRadians(-90) , 0, 1, 0);
         } else {
-            t1 = CATransform3DRotate(self.layer.transform, DegreesToRadians(-90) , 0, 1, 0);
-            t2 = self.layer.transform;
+            t1 = CATransform3DRotate(t1, DegreesToRadians(90) , 0, 1, 0);
         }
     }
-    t1.m34 = -1.0/100.0;
-    t2.m34 = -1.0/100.0;
     
     //shift anchor point so we will rotate by the top of the view
     CABasicAnimation *anchorPoint = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];

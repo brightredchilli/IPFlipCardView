@@ -70,7 +70,7 @@
 
 - (IBAction)flipBackClicked:(id)sender {
     [self downCurrentCount];
-    [self.contentView showView:[ViewController labelWithString:self.allStrings[self.count]]]; // for now just to test the fadeout functionality
+    [self.contentView hideView:[ViewController labelWithString:self.allStrings[self.count]]]; // for now just to test the fadeout functionality
 }
 
 - (IBAction)swapViewClicked:(id)sender {

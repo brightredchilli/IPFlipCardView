@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIView+IPFlipCardView.h"
 
+static const CGFloat delayConstant = 0.7;
+
 @interface IPFlipViewContainer ()
 @property (strong, nonatomic) NSArray *currentViews;
 - (void)setup;
@@ -40,7 +42,7 @@
 
 - (void)setup {
     _direction = IPFlipViewDirectionHorizontal;
-    _animationDuration = 1.3;
+    _animationDuration = 0.5;
 }
 
 - (void)addView:(UIView *)view {
@@ -66,7 +68,7 @@
     
     view.layer.opacity = 0;
     [self addSubview:view];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC * 0.5);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC * delayConstant);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [view flipViewWithDuration:self.animationDuration
                              curve:UIViewAnimationCurveEaseIn
@@ -97,7 +99,7 @@
     
     view.layer.opacity = 0;
     [self addSubview:view];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC * 0.5);
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, self.animationDuration * NSEC_PER_SEC * delayConstant);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [view flipViewWithDuration:self.animationDuration
                              curve:UIViewAnimationCurveEaseIn
