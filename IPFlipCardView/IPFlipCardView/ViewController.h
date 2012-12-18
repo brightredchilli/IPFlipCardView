@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-- (IBAction)flipViewClicked:(id)sender;
+@class IPFlipViewContainer;
 
+@interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet IPFlipViewContainer *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+- (IBAction)flipViewClicked:(id)sender;
+- (IBAction)flipBackClicked:(id)sender;
+    
 @end

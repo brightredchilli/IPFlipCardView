@@ -18,11 +18,8 @@
                        curve:(UIViewAnimationCurve)curve
                   horizontal:(BOOL)isHorizontalFlip
                directionAway:(BOOL)isDirectionAway
-                     fadeOut:(BOOL)isFade;
-
-- (void)transitionToView:(UIView *)view
-                duration:(CFTimeInterval)duration
-                   curve:(UIViewAnimationCurve)curve
-              horizontal:(BOOL)isHorizontalFlip;
-
+                     frontal:(BOOL)isFrontal
+                     fadeOut:(BOOL)isFade
+                    delegate:(id)delegate;
+    
 @end

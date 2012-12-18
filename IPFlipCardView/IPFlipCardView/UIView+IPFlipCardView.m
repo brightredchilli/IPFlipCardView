@@ -20,14 +20,22 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 
 - (void)flipViewWithDuration:(CFTimeInterval)duration
                        curve:(UIViewAnimationCurve)curve {
-    [self flipViewWithDuration:duration curve:curve horizontal:YES directionAway:NO fadeOut:NO];
+    [self flipViewWithDuration:duration
+                         curve:curve
+                    horizontal:YES
+                 directionAway:NO
+                       frontal:NO
+                       fadeOut:NO
+                      delegate:nil];
 }
 
 - (void)flipViewWithDuration:(CFTimeInterval)duration
                        curve:(UIViewAnimationCurve)curve
                   horizontal:(BOOL)isHorizontalFlip
                directionAway:(BOOL)isDirectionAway
-                     fadeOut:(BOOL)isFade {
+                     frontal:(BOOL)isFrontal
+                     fadeOut:(BOOL)isFade
+                    delegate:(id)delegate {
     
     NSString *timingFunction = kCAMediaTimingFunctionLinear;
     
@@ -45,32 +53,38 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
             break;
     }
     
-    CATransform3D i = self.layer.transform;
-    i.m34 = -1/50;
-    self.layer.transform = i;
-    
     CATransform3D t, t1, t2;
     CGPoint newAnchor;
     CGPoint newPosition = self.layer.position;
-    CGFloat degrees = isDirectionAway ? -60 : 60;
+//    CGFloat degrees = isFrontal ? -90 : 90;
     
     if (isHorizontalFlip) {
-        t =  CATransform3DRotate(self.layer.transform, DegreesToRadians(degrees) , 0, 1, 0);
-        newAnchor = CGPointMake(0.1, 0.5);
+        newAnchor = CGPointMake(0.0, 0.5);
         newPosition.x = CGRectGetMinX(self.frame);
     } else {
-        t = CATransform3DRotate(self.layer.transform, DegreesToRadians(degrees) , 1, 0, 0);
         newAnchor = CGPointMake(0.5, 0);
         newPosition.y = CGRectGetMinY(self.frame);
     }
-    t.m34 = -1.0/500.0;
+    
     if (isDirectionAway) {
-        t1 = self.layer.transform;
-        t2 = t;
+        if (isFrontal) {
+            t1 = CATransform3DRotate(self.layer.transform, DegreesToRadians(90) , 0, 1, 0);
+            t2 = self.layer.transform;
+        } else {
+            t1 = self.layer.transform;
+            t2 = CATransform3DRotate(self.layer.transform, DegreesToRadians(-90) , 0, 1, 0);
+        }
     } else {
-        t1 = t;
-        t2 = self.layer.transform;
+        if (isFrontal) {
+            t1 = self.layer.transform;
+            t2 = CATransform3DRotate(self.layer.transform, DegreesToRadians(90) , 0, 1, 0);
+        } else {
+            t1 = CATransform3DRotate(self.layer.transform, DegreesToRadians(-90) , 0, 1, 0);
+            t2 = self.layer.transform;
+        }
     }
+    t1.m34 = -1.0/100.0;
+    t2.m34 = -1.0/100.0;
     
     //shift anchor point so we will rotate by the top of the view
     CABasicAnimation *anchorPoint = [CABasicAnimation animationWithKeyPath:@"anchorPoint"];
@@ -80,6 +94,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     anchorPoint.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     anchorPoint.fillMode = kCAFillModeBoth;
     anchorPoint.removedOnCompletion = NO;
+    anchorPoint.delegate = delegate;
     
     //shift position so that the anchor point does not cause shift.
     CABasicAnimation *position = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -89,6 +104,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     position.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     position.fillMode = kCAFillModeBoth;
     position.removedOnCompletion = NO;
+    position.delegate = delegate;
     
     //make the rotation happen
     CABasicAnimation *rotationTransform = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -97,6 +113,7 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
     rotationTransform.duration = duration;
     rotationTransform.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     rotationTransform.fillMode = kCAFillModeBackwards;
+    rotationTransform.delegate = delegate;
     
     //make the rotation happen
     CABasicAnimation *opacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -112,17 +129,19 @@ CGFloat DegreesToRadians(CGFloat degrees) {return degrees * M_PI / 180;};
 //    opacity.timingFunction = [CAMediaTimingFunction functionWithName:timingFunction];
     opacity.removedOnCompletion = NO;
     opacity.fillMode = kCAFillModeBoth;
+    opacity.delegate = delegate;
     
     [self.layer addAnimation:anchorPoint forKey:@"anchorPoint"];
     [self.layer addAnimation:position forKey:@"position"];
     [self.layer addAnimation:rotationTransform forKey:@"transform"];
     [self.layer addAnimation:opacity forKey:@"opacity"];
-    
 }
 
 - (void)transitionToView:(UIView *)view
                 duration:(CFTimeInterval)duration
                    curve:(UIViewAnimationCurve)curve
               horizontal:(BOOL)isHorizontalFlip {
+
+    
 }
 @end

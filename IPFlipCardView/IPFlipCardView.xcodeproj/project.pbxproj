@@ -21,6 +21,7 @@
 		2E3D363A166D46D800FE031A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D3639166D46D800FE031A /* ViewController.m */; };
 		2E3D3642166D474300FE031A /* UIView+IPFlipCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3D3641166D474300FE031A /* UIView+IPFlipCardView.m */; };
 		2E3D3644166D479D00FE031A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3D3643166D479D00FE031A /* QuartzCore.framework */; };
+		2E52E9EF167BCF2D00B214FA /* IPFlipViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E52E9EE167BCF2D00B214FA /* IPFlipViewContainer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		2E3D3640166D474300FE031A /* UIView+IPFlipCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IPFlipCardView.h"; sourceTree = "<group>"; };
 		2E3D3641166D474300FE031A /* UIView+IPFlipCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IPFlipCardView.m"; sourceTree = "<group>"; };
 		2E3D3643166D479D00FE031A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2E52E9ED167BCF2D00B214FA /* IPFlipViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFlipViewContainer.h; sourceTree = "<group>"; };
+		2E52E9EE167BCF2D00B214FA /* IPFlipViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFlipViewContainer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 			children = (
 				2E3D3640166D474300FE031A /* UIView+IPFlipCardView.h */,
 				2E3D3641166D474300FE031A /* UIView+IPFlipCardView.m */,
+				2E52E9ED167BCF2D00B214FA /* IPFlipViewContainer.h */,
+				2E52E9EE167BCF2D00B214FA /* IPFlipViewContainer.m */,
 				2E3D3629166D46D800FE031A /* AppDelegate.h */,
 				2E3D362A166D46D800FE031A /* AppDelegate.m */,
 				2E3D3632166D46D800FE031A /* MainStoryboard_iPhone.storyboard */,
@@ -190,6 +195,7 @@
 				2E3D362B166D46D800FE031A /* AppDelegate.m in Sources */,
 				2E3D363A166D46D800FE031A /* ViewController.m in Sources */,
 				2E3D3642166D474300FE031A /* UIView+IPFlipCardView.m in Sources */,
+				2E52E9EF167BCF2D00B214FA /* IPFlipViewContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +321,7 @@
 				2E3D363F166D46D800FE031A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

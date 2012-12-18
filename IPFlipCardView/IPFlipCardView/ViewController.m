@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UIView+IPFlipCardView.h"
+#import "IPFlipViewContainer.h"
 
 
 @interface ViewController ()
@@ -27,7 +28,6 @@
     [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     self.allStrings = @[@"Food", @"Music", @"Art", @"Travel", @"Lifestyle", @"Fashion", @"Beat", @"Opinion"];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -40,22 +40,37 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateCurrentCount {
+- (void)upCurrentCount {
     self.count++;
     if (self.count >= self.allStrings.count) {
         self.count = 0;
     }
 }
 
+- (void)downCurrentCount {
+    self.count--;
+    if (self.count < 0) {
+        self.count = self.allStrings.count - 1;
+    }
+}
+
++ (UILabel *)labelWithString:(NSString *)string {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 200, 50)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.text = string;
+    return label;
+}
+
 - (IBAction)flipViewClicked:(id)sender {
-    [self updateCurrentCount];
-    self.titleLabel.text = [self.allStrings objectAtIndex:self.count];
-    [self.contentView flipViewWithDuration:0.3
-                                     curve:UIViewAnimationCurveLinear
-                                horizontal:YES
-                             directionAway:YES
-                                   fadeOut:YES];
-    
+    [self upCurrentCount];
+    [self.contentView showView:[ViewController labelWithString:self.allStrings[self.count]]]; // for now just to test the fadeout functionality
+}
+
+- (IBAction)flipBackClicked:(id)sender {
+    [self downCurrentCount];
+    [self.contentView showView:[ViewController labelWithString:self.allStrings[self.count]]]; // for now just to test the fadeout functionality
 }
 
 - (IBAction)swapViewClicked:(id)sender {
